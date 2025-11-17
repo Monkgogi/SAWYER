@@ -8,4 +8,8 @@ In the Docker shell, edit the intera.sh file via nano. Change the ros_hostname t
 
 MORE COMING ...
 
-docker run --net=host <your_image_here> /bin/bash
+# Docker Commands
+docker build -t sawyer_moveit .
+
+docker run -it --net=host --env DISPLAY=$DISPLAY --env QT_11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix sawyer_moveit:latest
+
