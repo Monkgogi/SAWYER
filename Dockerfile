@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y \
     ros-kinetic-dynamic-reconfigure \
     ros-kinetic-trajectory-msgs \
     ros-kinetic-rospy-message-converter \
+    ros-kinetic-moveit \
     && rm -rf /var/lib/apt/lists/*
 
 # Setup ROS environment
@@ -74,7 +75,12 @@ RUN apt-get update && apt-get install -y net-tools \
 
 RUN cp /root/catkin_ws/src/intera_sdk/intera.sh /root/catkin_ws/
 
+RUN apt-get update && apt-get install -y python-pip && rm -rf /var/lib/apt/lists/*
 
+RUN git clone https://github.com/ros-industrial/robotiq.git 
+
+RUN cd /root/catkin_ws/src \
+    wstool merge https://raw.githubusercontent.com/RethinkRobotics/sawyer_moveit/master/sawyer_moveit.rosinstall
 
 
 
